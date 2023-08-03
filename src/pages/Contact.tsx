@@ -1,18 +1,11 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const ContactPage = () => {
-  const aLink = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState<any>({
     name: '',
     email: '',
     messages: '',
   });
-
-  const submitEmail = () => {
-    if (aLink.current) {
-      aLink.current.click();
-    }
-  }
   return (
     <div>
       <div className="min-h-[944px]">
