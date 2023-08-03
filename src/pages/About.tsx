@@ -84,7 +84,7 @@ const AboutPage = () => {
                       <img
                         src={IconArrowBottomRec}
                         alt="icon-arrow-bottom-rec"
-                        className="absolute right-[-102px] top-[29px]"
+                        className="absolute right-[-187px] top-[69px]"
                       />
                     </div>
                     <div className="col-span-2 flex flex-col-reverse text-[20px]">
