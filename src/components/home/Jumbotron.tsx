@@ -1,8 +1,10 @@
 import ShowreelVideo from "../../assets/showreel_video.mp4";
 import LogoMaxima from "../../assets/logo/logo_maxima.png";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
+import { useNavigate } from "react-router-dom";
 
 const Jumbotron = () => {
+  const navigate = useNavigate();
   return (
     <section className="h-[944px] relative">
       <video autoPlay muted loop className="w-full absolute top-[-93px] z-[-1]">
@@ -22,7 +24,7 @@ const Jumbotron = () => {
           </div>
           <div>
           <div className="flex justify-center">
-            <button className="text-[24px] leading-[23px] tracking-[-0.015em] font-semibold py-[14px] px-[25px] rounded-full border-[1.70516px] border-[#FFFF00] text-black bg-[#FFFF00]">Get in Touch</button>
+            <button className="text-[24px] leading-[23px] tracking-[-0.015em] font-semibold py-[14px] px-[25px] rounded-full border-[1.70516px] border-[#FFFF00] text-black bg-[#FFFF00]" onClick={() => navigate('/contact')}>Get in Touch</button>
           </div>
           </div>
         </div>

@@ -15,7 +15,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full bg-[#0E0E0E] py-[18px] px-[48px] flex items-center justify-between">
+    <nav className="w-full bg-[#0E0E0E] py-[18px] px-[48px] flex items-center justify-between fixed top-0 z-[10000]">
       <img src={LogoMaxima} alt="logo-maxima" />
       <div className="flex gap-20">
         <button
