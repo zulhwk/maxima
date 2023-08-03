@@ -8,23 +8,55 @@ const AboutPage = () => {
   const wrapperPhotoRef = useRef<HTMLDivElement>(null);
   const [widthPhotos, setWidthPhotos] = useState(300);
   const [dataServices] = useState<any>([
-    { title: "Offline Editing", images: 'pexels-4.jpg' },
-    { title: "Motion Graphic", images: 'pexels-2.jpg' },
-    { title: "Color Grading", images: 'pexels-5.jpg' },
-    { title: "Visual Compositing", images: 'pexels-1.jpg' },
-    { title: "Visual Effect", images: 'pexels-3.jpg' },
+    { title: "Offline Editing", images: "pexels-4.jpg" },
+    { title: "Motion Graphic", images: "pexels-2.jpg" },
+    { title: "Color Grading", images: "pexels-5.jpg" },
+    { title: "Visual Compositing", images: "pexels-1.jpg" },
+    { title: "Visual Effect", images: "pexels-3.jpg" },
   ]);
   const [dataKaryawan] = useState<any>([
-    "karyawan_1.png",
-    "karyawan_2.png",
-    "karyawan_3.png",
-    "karyawan_4.png",
+    {
+      name: "Furqon Syiva Handoko",
+      role: "Leader, VFX Supervisor, & Motion Designer.",
+      img: "karyawan_1.png",
+    },
+    {
+      name: "Dzikri Auliya Yahya",
+      role: "Color Grading Supervisor",
+      img: "karyawan_2.png",
+    },
+    {
+      name: "M Husein Fadlullah",
+      role: "Online Editing Supervisor",
+      img: "karyawan_3.png",
+    },
+    {
+      name: "Nakisha Alfadda",
+      role: "Offline Editing Supervisor",
+      img: "karyawan_4.png",
+    },
   ]);
   useEffect(() => {
     if (wrapperPhotoRef.current) {
       setWidthPhotos(wrapperPhotoRef.current.offsetWidth / 4);
     }
   }, []);
+
+  const [hideEmployeDetail, setHideEmployeDetail] = useState<any>(new Array(dataKaryawan.length).fill(false));
+
+  const showEmploye = (key:number) => {
+    let oldValue = hideEmployeDetail;
+    oldValue[key] = true;
+    console.log(oldValue);
+    setHideEmployeDetail(oldValue);
+  };
+
+  const hideEmplye = (key:number) => {
+    let oldValue = hideEmployeDetail;
+    oldValue[key] = false;
+    setHideEmployeDetail(oldValue);
+  };
+
   return (
     <div>
       <div className="min-h-[944px]">
@@ -76,10 +108,20 @@ const AboutPage = () => {
                 <div className="flex justify-center">
                   <div className="grid grid-cols-2 gap-[25px] mt-[123px]">
                     <div className="bg-[#FFFF00] min-w-[545px] min-h-[208px] max-w-[545px] max-h-[208px] relative">
-                      <div className="bg-sky-500 min-w-[545px] min-h-[208px] absolute top-[-12px] left-[-13px]" style={{ backgroundImage: `url(${require(`../assets/tante_minum_es.jpg`)})`}} />
+                      <div
+                        className="bg-sky-500 min-w-[545px] min-h-[208px] absolute top-[-12px] left-[-13px]"
+                        style={{
+                          backgroundImage: `url(${require(`../assets/tante_minum_es.jpg`)})`,
+                        }}
+                      />
                     </div>
                     <div className="bg-[#FFFF00] min-w-[545px] min-h-[208px] max-w-[545px] max-h-[208px] relative">
-                      <div className="bg-sky-500 min-w-[545px] min-h-[208px] absolute top-[-12px] left-[-13px]" style={{ backgroundImage: `url(${require(`../assets/abang_presentasi.png`)})`}} />
+                      <div
+                        className="bg-sky-500 min-w-[545px] min-h-[208px] absolute top-[-12px] left-[-13px]"
+                        style={{
+                          backgroundImage: `url(${require(`../assets/abang_presentasi.png`)})`,
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
@@ -172,32 +214,64 @@ const AboutPage = () => {
             <div>
               <span className="text-[64px]">
                 <b>Let’s</b> Meet
-                <br /> <b>Behind</b> the <b className="relative">magic! <img src={require('../assets/stars.png')} alt="stars" className="absolute right-0 top-[-22px]" /></b>
+                <br /> <b>Behind</b> the{" "}
+                <b className="relative">
+                  magic!{" "}
+                  <img
+                    src={require("../assets/stars.png")}
+                    alt="stars"
+                    className="absolute right-0 top-[-22px]"
+                  />
+                </b>
               </span>
             </div>
           </div>
         </div>
         <div ref={wrapperPhotoRef}>
           <div className="flex">
-            {dataKaryawan.map((data: string, key: any) => {
+            {dataKaryawan.map((data: any, key: number) => {
               return (
                 <div
                   key={key}
-                  className="bg-gray-500 min-h-[500px] max-w-[360px] min-w-[360px]"
+                  className="bg-gray-500 min-h-[500px] max-w-[360px] min-w-[360px] relative parent-employe"
                   style={{
                     minWidth: `${widthPhotos}px`,
                     maxWidth: `${widthPhotos}px`,
-                    backgroundImage: `url(${require(`../assets/${data}`)})`,
+                    backgroundImage: `url(${require(`../assets/${data.img}`)})`,
                     backgroundRepeat: `no-repeat`,
-                    backgroundSize: `100% 100%`
+                    backgroundSize: `100% 100%`,
                   }}
-                />
+                  onMouseEnter={() => showEmploye(key)}
+                  onMouseLeave={() => hideEmplye(key)}
+                >
+                  <div
+                    className="absolute bottom-0 w-100 flex-col justify-end hidden child-employe transition-all ease-in-out duration-700"
+                    style={{
+                      background: `linear-gradient(180deg, rgba(255, 255, 0, 0.00) 0%, rgba(255, 255, 0, 0.06) 22.92%, rgba(255, 255, 0, 0.62) 46.35%, rgba(255, 255, 0, 0.90) 65.63%)`,
+                      minWidth: `${widthPhotos}px`,
+                      maxWidth: `${widthPhotos}px`,
+                      minHeight: `255px`,
+                    }}
+                  >
+                    <div className="pb-[34px] pl-[30px]">
+                      <h2 className="text-black text-[20px] font-bold">{ data.name }</h2>
+                      <span className="text-[12px] text-black italic">{ data.role }</span>
+                    </div>
+                  </div>
+                </div>
               );
             })}
           </div>
         </div>
-        <svg width="100%" height="100" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path width="20" d="M720.5 100L0 0H1440L720.5 100Z" fill="#FFFF00"/>
+        <svg
+          width="100%"
+          height="100"
+          viewBox="0 0 1440 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          <path width="20" d="M720.5 100L0 0H1440L720.5 100Z" fill="#FFFF00" />
         </svg>
       </div>
     </div>

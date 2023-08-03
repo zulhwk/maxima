@@ -11,3 +11,7 @@ body {
   color: white;
   margin: 0;
 }
+
+.parent-employe:hover .child-employe {
+  display: flex;
+}
