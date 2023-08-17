@@ -9,7 +9,9 @@ import ReactGA from 'react-ga';
 function App() {
   useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search);
-  }, []);
+    console.log(window.location.pathname + window.location.search, "HELOO WORLDS");
+  }, [window.location.pathname]);
+
   const routes = useRoutes(allRoutes());
   return routes;
 }
