@@ -5,8 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 import ReactGA from 'react-ga';
-const TRACKING_ID = "G-MPQ95KJFZD"; // OUR_TRACKING_ID
-ReactGA.initialize(TRACKING_ID);
+// const TRACKING_ID = "G-MPQ95KJFZD"; // OUR_TRACKING_ID
+ReactGA.initialize("G-MPQ95KJFZD");
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
