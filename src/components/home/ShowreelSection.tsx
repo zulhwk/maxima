@@ -5,6 +5,12 @@ import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
 const ShowreelSection = () => {
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    // @ts-ignore
+    window.gtag('event', "button_show_reels");
+    navigate('/work');
+  }
   return (
     <div className="relative">
       <section className="min-h-[400px] max-h-[400px]" style={{ backgroundImage: `url(${UnspashWorkingBackground})`}}>
@@ -12,7 +18,7 @@ const ShowreelSection = () => {
           <div className="max-w-[750px] flex flex-col-reverse mb-[84px] mr-[275px] cursor-pointer">
             <div className="group flex gap-[50px]">
               <span className="text-[60px] leading-[96%]"><b>LE’S</b> TAKE A <b>LOOK</b> TO OUR <b>SHOWREEL</b></span>
-              <div className="bg-[#FFFF00] py-[28px] px-[43px] text-black flex text-center items-center" onClick={() => navigate('/work')}>
+              <div className="bg-[#FFFF00] py-[28px] px-[43px] text-black flex text-center items-center" onClick={() => handleClick()}>
                 <ArrowRightIcon className="font-bold" width={50} height={43} />
               </div>
             </div>

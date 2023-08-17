@@ -18,6 +18,12 @@ const Navbar = () => {
   const handleClickMenu = (path:any, name?:any) => {
     navigateTo(path);
     ReactGA.event({category: name, action: "click", label: name});
+    // @ts-ignore
+    window.gtag('event', 'page_view', {
+        page_title: name,
+        page_path: path,
+        page_location: window.location.href
+    })
   }
 
   return (

@@ -1,4 +1,21 @@
+import { useEffect } from "react";
+
 const WorkPage = () => {
+
+  const handleSendGA = (event:any) => {
+    if (event.data === 'video_played') {
+      // @ts-ignore
+      window.gtag('event', 'playing_video_showreel');
+    }
+  }
+
+  useEffect(() => {
+    window.parent.postMessage('video_played', '*');
+    window.addEventListener('message', handleSendGA, false);
+    return () => {
+      window.removeEventListener('message', handleSendGA, false);
+    }
+  }, []);
   return (
     <div>
       <div className="min-h-[944px]">

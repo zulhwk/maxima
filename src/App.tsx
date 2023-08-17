@@ -6,8 +6,8 @@ import allRoutes from "./routes";
 import { useEffect } from 'react';
 import ReactGA from 'react-ga';
 
-const TRACKING_ID = "G-MPQ95KJFZD"; // OUR_TRACKING_ID
-ReactGA.initialize(TRACKING_ID);
+// const TRACKING_ID = "G-MPQ95KJFZD"; // OUR_TRACKING_ID
+// ReactGA.initialize(TRACKING_ID);
 
 function App() {
   useEffect(() => {

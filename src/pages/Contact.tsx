@@ -6,6 +6,11 @@ const ContactPage = () => {
     email: '',
     messages: '',
   });
+
+  const handleClick = () => {
+     // @ts-ignore
+     window.gtag('event', 'submit_form_message');
+  }
   return (
     <div>
       <div className="min-h-[944px]">
@@ -26,7 +31,7 @@ const ContactPage = () => {
                   <textarea cols={10} rows={10} className="py-[13px] px-[30px] w-full rounded-lg text-black" onChange={(e) => setForm((old:any) => ({...old, messages: e.target.value}))} />
                 </div>
                 <div className="flex justify-end">
-                  <a href={`mailto:18103094@ittelkom-pwt.ac.id?subject=Maxima Contact Us&body=${form.messages}`} className="bg-[#FFFF00] text-black p-4 font-bold rounded-full min-w-[100px]">Submit</a>
+                  <a href={`mailto:18103094@ittelkom-pwt.ac.id?subject=Maxima Contact Us&body=${form.messages}`} onClick={handleClick} className="bg-[#FFFF00] text-black p-4 font-bold rounded-full min-w-[100px]">Submit</a>
                 </div>
               </form>
             </div>

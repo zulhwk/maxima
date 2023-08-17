@@ -6,6 +6,12 @@ import {
 import IconBubbleStar from "../../assets/img/icon_bubble_star.png";
 
 const ContactSection = () => {
+
+  const handleClick = (name:any) => {
+    // @ts-ignore
+    window.gtag('event', name);
+  }
+
   return (
     <section className="pt-[80px] pb-[167px] text-center">
       <div>
@@ -24,7 +30,7 @@ const ContactSection = () => {
         say hello to us!
       </p>
       <div className="mt-[56px] flex gap-[24px] justify-center">
-        <a href="https://instagram.com/mxm.post" className="flex items-center gap-3 text-[20px] leading-[30px] tracking-[-0.015em] font-normal bg-[#A086BD] rounded-full px-[20px] py-[5px]">
+        <a href="https://instagram.com/mxm.post" target="blank" onClick={() => handleClick('button_instagram')} className="flex items-center gap-3 text-[20px] leading-[30px] tracking-[-0.015em] font-normal bg-[#A086BD] rounded-full px-[20px] py-[5px]">
           <svg
             width="25"
             height="25"
@@ -42,6 +48,8 @@ const ContactSection = () => {
         <a
           href="tel:+6285171554425"
           className="flex items-center gap-3 text-[20px] leading-[30px] tracking-[-0.015em] font-normal bg-[#0D9D9F] rounded-full px-[20px] py-[5px]"
+          target="blank" 
+          onClick={() => handleClick('button_telp')}
         >
           <PhoneIcon width={20} />
           <span>+62 851 7155 4425</span>
@@ -49,6 +57,8 @@ const ContactSection = () => {
         <a
           href="mailto:18103094@ittelkom-pwt.ac.id"
           className="flex items-center gap-3 text-[20px] leading-[30px] tracking-[-0.015em] font-normal bg-[#007337] rounded-full px-[20px] py-[5px]"
+          target="blank" 
+          onClick={() => handleClick('button_email')}
         >
           <EnvelopeIcon width={20} />
           <span>CONTACT@MXMPOST.COM</span>
