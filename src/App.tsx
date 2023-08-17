@@ -10,6 +10,7 @@ function App() {
   useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search);
     console.log(window.location.pathname + window.location.search, "HELOO WORLDS");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [window.location.pathname]);
 
   const routes = useRoutes(allRoutes());
