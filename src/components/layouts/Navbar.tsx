@@ -49,6 +49,12 @@ const Navbar = () => {
           <span className={isActivedMenu("/work")}>Work</span>
         </button>
         <button
+          onClick={() => handleClickMenu("/blog", "blog")}
+          className="text-[20px] leading-[30px] tracking-[-0.015em] font-normal pb-[4px]"
+        >
+          <span className={isActivedMenu("/blog")}>Blog</span>
+        </button>
+        <button
           onClick={() => handleClickMenu("/contact", "contact")}
           className="text-[20px] leading-[30px] tracking-[-0.015em] font-semibold py-[5px] px-[20px] transition ease-in-out rounded-full border border-white hover:border-[#FFFF00] hover:text-black hover:bg-[#FFFF00] hover:duration-700"
         >

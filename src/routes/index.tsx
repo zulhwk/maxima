@@ -3,6 +3,8 @@ import AboutPage from "../pages/About";
 import WorkPage from "../pages/Work";
 import ContactPage from "../pages/Contact";
 import Layouts from "../components/layouts";
+import BlogPage from "../pages/Blog";
+import BlogDetailPage from "../pages/BlogDetail";
 
 const routes = () => [
   {
@@ -25,6 +27,14 @@ const routes = () => [
         path: "contact",
         element: <ContactPage />,
       },
+      {
+        path: "blog",
+        element: <BlogPage />,
+      },
+      {
+        path: "blog/:slug",
+        element: <BlogDetailPage />,
+      }
     ],
   },
 ];
