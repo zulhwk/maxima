@@ -15,3 +15,5 @@ COPY nginx.conf /opt/bitnami/nginx/conf/nginx.conf
 
 EXPOSE 8081
 
+CMD ["nginx", "-g", "daemon off;"]
+
