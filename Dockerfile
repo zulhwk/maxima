@@ -1,9 +1,10 @@
 FROM node:lts as build-stage
 
 WORKDIR /app
-COPY package.json ./
+COPY package.json /app/
 
 RUN npm install
+COPY . /app/
 RUN npm run build
 
 FROM bitnami/nginx:latest AS prod
