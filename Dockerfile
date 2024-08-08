@@ -1,19 +1,36 @@
-FROM node:lts as build-stage
+# ------------------------
+# Step 1: Build react app
+# ------------------------
 
+# Use node:latest as the builder image
+FROM node:latest AS builder
+
+# Set the working directory
 WORKDIR /app
-COPY package.json /app/
 
+# Copy package.json and install app dependencies
+COPY package.json .
 RUN npm install
-COPY . /app/
+
+# Copy other project files and build
+COPY . ./
 RUN npm run build
 
-FROM bitnami/nginx:latest AS prod
+# --------------------------------------
+# Step 2: Set up nginx to serve the app
+# --------------------------------------
+# Use nginx:latest as the base image
+FROM nginx:latest
 
-# COPY --from=build-stage /app/build /app
-COPY --from=build-stage /app/build /usr/share/nginx/html
-COPY nginx.conf /opt/bitnami/nginx/conf/nginx.conf
+# Overwriting nginx config with our own config file
+RUN rm -rf /etc/nginx/conf.d/default.conf
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 8081
+# Copy over the build created in the Step 1
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-CMD ["nginx", "-g", "daemon off;"]
+# Set the working directory
+WORKDIR /usr/share/nginx/html
 
+# Start nginx server
+CMD ["/bin/bash", "-c", "nginx -g \"daemon off;\""]
