@@ -1,36 +1,22 @@
-# ------------------------
-# Step 1: Build react app
-# ------------------------
+# Step 1: Build the React application
+FROM node:lts AS build
 
-# Use node:latest as the builder image
-FROM node:latest AS builder
-
-# Set the working directory
 WORKDIR /app
 
-# Copy package.json and install app dependencies
-COPY package.json .
+COPY package.json ./
+COPY package-lock.json ./
+
 RUN npm install
 
-# Copy other project files and build
 COPY . ./
+
 RUN npm run build
 
-# --------------------------------------
-# Step 2: Set up nginx to serve the app
-# --------------------------------------
-# Use nginx:latest as the base image
-FROM nginx:latest
+# Step 2: Serve the built application using a static file server
+FROM nginx:alpine
 
-# Overwriting nginx config with our own config file
-RUN rm -rf /etc/nginx/conf.d/default.conf
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/build /usr/share/nginx/html
 
-# Copy over the build created in the Step 1
-COPY --from=builder /app/build /usr/share/nginx/html
+EXPOSE 80
 
-# Set the working directory
-WORKDIR /usr/share/nginx/html
-
-# Start nginx server
-CMD ["/bin/bash", "-c", "nginx -g \"daemon off;\""]
+CMD ["nginx", "-g", "daemon off;"]
