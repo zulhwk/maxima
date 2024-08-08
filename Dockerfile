@@ -24,7 +24,7 @@ FROM nginx:latest
 
 # Overwriting nginx config with our own config file
 RUN rm -rf /etc/nginx/conf.d/default.conf
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy over the build created in the Step 1
 COPY --from=builder /app/dist /usr/share/nginx/html
