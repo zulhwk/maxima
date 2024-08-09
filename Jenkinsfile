@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'my-react-app'
+        DOCKER_IMAGE = 'my-react-app:latest'
     }
 
     stages {
